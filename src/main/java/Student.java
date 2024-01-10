@@ -42,10 +42,10 @@ public class Student {
 
     @Override
     public String toString() {
-        return "Student:" + '\n' +
-                "fullName - " + fullName + '\n' +
-                "universityId - " + universityId + '\n' +
-                "currentCourseNumber - " + currentCourseNumber + '\n' +
+        return "Student: "+
+                "fullName - " + fullName + ", " +
+                "universityId - " + universityId + ", " +
+                "currentCourseNumber - " + currentCourseNumber + ", " +
                 "avgExamScore - " + avgExamScore;
     }
 }

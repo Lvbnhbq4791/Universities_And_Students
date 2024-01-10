@@ -52,11 +52,11 @@ public class University {
 
     @Override
     public String toString() {
-        return "University:" + '\n' +
-                "id - " + id + '\n' +
-                "fullName - " + fullName + '\n' +
-                "shortName - " + shortName + '\n' +
-                "yearOfFoundation - " + yearOfFoundation + '\n' +
+        return "University: "+
+                "id - " + id + ", " +
+                "fullName - " + fullName + ", " +
+                "shortName - " + shortName + ", " +
+                "yearOfFoundation - " + yearOfFoundation + ", " +
                 "mainProfile - " + mainProfile.getProfileName();
     }
 }

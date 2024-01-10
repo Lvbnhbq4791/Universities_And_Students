@@ -1,17 +1,16 @@
+import java.io.File;
+
 public class Main {
     public static void main(String[] args) {
-        University university = new University()
-                .setId("4791")
-                .setFullName("Российский Государственный Университет")
-                .setShortName("РГУ")
-                .setYearOfFoundation(1855)
-                .setMainProfile(StudyProfile.HISTORY);
-        System.out.println(university);
-        Student student = new Student()
-                .setFullName("Иванов Иван Иванович")
-                .setUniversityId("4791")
-                .setCurrentCourseNumber(156)
-                .setAvgExamScore(8.5F);
-        System.out.println(student);
+        File file = new File("src/main/resources/universityInfo.xlsx");
+        ReadingFile readingFile = ReadingFile.getReadingFile();
+        readingFile.fileProcessing(file);
+        for (Student student :readingFile.readingSheetStudent()){
+            System.out.println(student);
+        }
+        System.out.println("---------------------------------------------------------------");
+        for (University university :readingFile.readingSheetUniversity()){
+            System.out.println(university);
+        }
     }
 }
