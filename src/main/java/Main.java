@@ -1,16 +1,18 @@
 import java.io.File;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
         File file = new File("src/main/resources/universityInfo.xlsx");
-        ReadingFile readingFile = ReadingFile.getReadingFile();
-        readingFile.fileProcessing(file);
-        for (Student student :readingFile.readingSheetStudent()){
-            System.out.println(student);
-        }
-        System.out.println("---------------------------------------------------------------");
-        for (University university :readingFile.readingSheetUniversity()){
-            System.out.println(university);
-        }
+        ReadingFile classReadingFile = ReadingFile.getClassReadingFile();
+        classReadingFile.readingFile(file);
+        Map<ValuesStudent, ComparatorStudent> mapStudent = new MapsComparators().getMapComparatorsStudent();
+        classReadingFile.readingSheetStudent().stream()
+                .sorted(TypeComporator.getComparatorStudent(mapStudent, ValuesStudent.UNIVERSITY_ID))
+                .forEach(System.out::println);
+        Map<ValuesUniversity, ComparatorUniversity> mapUniversity = new MapsComparators().getMapComparatorsUniversity();
+        classReadingFile.readingSheetUniversity().stream()
+                .sorted(TypeComporator.getComparatorUniversity(mapUniversity, ValuesUniversity.SHORT_NAME))
+                .forEach(System.out::println);
     }
 }

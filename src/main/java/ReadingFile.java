@@ -11,30 +11,30 @@ import java.util.Iterator;
 import java.util.List;
 
 public class ReadingFile {
-    private static ReadingFile readingFile;
-    private final List<Student> studentsList;
-    private final List<University> universityList;
+    private static ReadingFile classReadingFile;
+    private List<Student> listStudents;
+    private List<University> listUniversities;
     private XSSFSheet sheetStudents;
-    private XSSFSheet sheetUniversity;
+    private XSSFSheet sheetUniversities;
 
     private ReadingFile() {
-        this.studentsList = new ArrayList<>();
-        this.universityList = new ArrayList<>();
+        this.listStudents = new ArrayList<>();
+        this.listUniversities = new ArrayList<>();
     }
 
-    public static ReadingFile getReadingFile() {
-        if (readingFile == null) {
-            readingFile = new ReadingFile();
+    public static ReadingFile getClassReadingFile() {
+        if (classReadingFile == null) {
+            classReadingFile = new ReadingFile();
         }
-        return readingFile;
+        return classReadingFile;
     }
 
-    public void fileProcessing(File file) {
+    public void readingFile(File file) {
         try (FileInputStream fileInputStream = new FileInputStream(file)) {
-            BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream, 1000);
+            BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
             XSSFWorkbook workbook = new XSSFWorkbook(bufferedInputStream);
             sheetStudents = workbook.getSheet("Студенты");
-            sheetUniversity = workbook.getSheet("Университеты");
+            sheetUniversities = workbook.getSheet("Университеты");
         } catch (Exception e) {
             System.out.println("Файл не найден");
         }
@@ -51,17 +51,17 @@ public class ReadingFile {
                         .setUniversityId(row.getCell(0).getStringCellValue())
                         .setCurrentCourseNumber((int) row.getCell(2).getNumericCellValue())
                         .setAvgExamScore((float) row.getCell(3).getNumericCellValue());
-                studentsList.add(student);
+                listStudents.add(student);
             }
         } else {
             System.out.println("Лист пустой или отсутствует");
         }
-        return studentsList;
+        return listStudents;
     }
 
     public List<University> readingSheetUniversity() {
-        if (sheetUniversity != null) {
-            Iterator<Row> iter = sheetUniversity.iterator();
+        if (sheetUniversities != null) {
+            Iterator<Row> iter = sheetUniversities.iterator();
             iter.next();
             while (iter.hasNext()) {
                 XSSFRow row = (XSSFRow) iter.next();
@@ -71,11 +71,11 @@ public class ReadingFile {
                         .setShortName(row.getCell(2).getStringCellValue())
                         .setYearOfFoundation((int) row.getCell(3).getNumericCellValue())
                         .setMainProfile(StudyProfile.valueOf(row.getCell(4).getStringCellValue()));
-                universityList.add(university);
+                listUniversities.add(university);
             }
         } else {
             System.out.println("Лист пустой или отсутствует");
         }
-        return universityList;
+        return listUniversities;
     }
 }
