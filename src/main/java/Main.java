@@ -8,11 +8,11 @@ public class Main {
         classReadingFile.readingFile(file);
         Map<ValuesStudent, ComparatorStudent> mapStudent = new MapsComparators().getMapComparatorsStudent();
         classReadingFile.readingSheetStudent().stream()
-                .sorted(TypeComporator.getComparatorStudent(mapStudent, ValuesStudent.UNIVERSITY_ID))
+                .sorted(TypeComporator.getComparatorStudent(mapStudent, ValuesStudent.FULL_NAME))
                 .forEach(System.out::println);
         Map<ValuesUniversity, ComparatorUniversity> mapUniversity = new MapsComparators().getMapComparatorsUniversity();
         classReadingFile.readingSheetUniversity().stream()
-                .sorted(TypeComporator.getComparatorUniversity(mapUniversity, ValuesUniversity.SHORT_NAME))
+                .sorted(TypeComporator.getComparatorUniversity(mapUniversity, ValuesUniversity.PROFILE_NAME))
                 .forEach(System.out::println);
     }
 }

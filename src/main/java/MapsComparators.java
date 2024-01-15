@@ -12,26 +12,19 @@ public class MapsComparators {
     }
 
     public Map<ValuesStudent, ComparatorStudent> getMapComparatorsStudent() {
-        mapComparatorsStudent.put(ValuesStudent.FULL_NAME, (o1, o2) -> StringUtils
-                .compare(o1.getFullName(), o2.getFullName()));
-        mapComparatorsStudent.put(ValuesStudent.UNIVERSITY_ID, (o1, o2) -> StringUtils
-                .compare(o1.getUniversityId(), o2.getUniversityId()));
-        mapComparatorsStudent.put(ValuesStudent.CURRENT_COURSE_NUMBER, (o1, o2) -> Integer
-                .compare(o1.getCurrentCourseNumber(), o2.getCurrentCourseNumber()));
-        mapComparatorsStudent.put(ValuesStudent.AVG_EXAM_SCORE, (o1, o2) -> Float
-                .compare(o2.getAvgExamScore(), o1.getAvgExamScore()));
+        mapComparatorsStudent.put(ValuesStudent.FULL_NAME, new ComporatorFullNameStudent());
+        mapComparatorsStudent.put(ValuesStudent.UNIVERSITY_ID, new ComporatorUniversityIdStudent());
+        mapComparatorsStudent.put(ValuesStudent.CURRENT_COURSE_NUMBER, new ComporatorCurrentCourseNumbersStudent());
+        mapComparatorsStudent.put(ValuesStudent.AVG_EXAM_SCORE, new ComporatorAvgExamScoresStudent());
         return mapComparatorsStudent;
     }
 
     public Map<ValuesUniversity, ComparatorUniversity> getMapComparatorsUniversity() {
-        mapComparatorsUniversity.put(ValuesUniversity.ID, (o1, o2) -> StringUtils
-                .compare(o1.getId(), o2.getId()));
-        mapComparatorsUniversity.put(ValuesUniversity.FULL_NAME, (o1, o2) -> StringUtils
-                .compare(o1.getFullName(), o2.getFullName()));
-        mapComparatorsUniversity.put(ValuesUniversity.SHORT_NAME, (o1, o2) -> StringUtils
-                .compare(o1.getShortName(), o2.getShortName()));
-        mapComparatorsUniversity.put(ValuesUniversity.YEAR_OF_FOUNDATION, (o1, o2) -> Integer
-                .compare(o1.getYearOfFoundation(), o2.getYearOfFoundation()));
+        mapComparatorsUniversity.put(ValuesUniversity.ID, new ComporatorIdUniversity());
+        mapComparatorsUniversity.put(ValuesUniversity.FULL_NAME, new ComporatorFullNameUniversity());
+        mapComparatorsUniversity.put(ValuesUniversity.SHORT_NAME, new ComporatorShortNameUniversity());
+        mapComparatorsUniversity.put(ValuesUniversity.YEAR_OF_FOUNDATION, new ComporatorYearOfFoundationUniversity());
+        mapComparatorsUniversity.put(ValuesUniversity.PROFILE_NAME, new ComporatorProfileNameUniversity());
         return mapComparatorsUniversity;
     }
 }
