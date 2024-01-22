@@ -1,7 +1,15 @@
+import com.google.gson.annotations.SerializedName;
+
+import java.util.Objects;
+
 public class Student {
+    @SerializedName("Фамилия И.О.")
     String fullName;
+    @SerializedName("ID Университета")
     String universityId;
+    @SerializedName("Номер курса")
     int currentCourseNumber;
+    @SerializedName("Средний балл на экзамене")
     float avgExamScore;
 
     public String getFullName() {
@@ -47,5 +55,13 @@ public class Student {
                 "universityId - " + universityId + ", " +
                 "currentCourseNumber - " + currentCourseNumber + ", " +
                 "avgExamScore - " + avgExamScore;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return currentCourseNumber == student.currentCourseNumber && Float.compare(avgExamScore, student.avgExamScore) == 0 && Objects.equals(fullName, student.fullName) && Objects.equals(universityId, student.universityId);
     }
 }
