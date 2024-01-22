@@ -1,5 +1,7 @@
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Objects;
+
 public class University {
     @SerializedName("Индетификатор")
     String id;
@@ -66,4 +68,13 @@ public class University {
                 "yearOfFoundation - " + yearOfFoundation + ", " +
                 "mainProfile - " + mainProfile.getProfileName();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        University that = (University) o;
+        return yearOfFoundation == that.yearOfFoundation && Objects.equals(id, that.id) && Objects.equals(fullName, that.fullName) && Objects.equals(shortName, that.shortName) && mainProfile == that.mainProfile;
+    }
+
 }
