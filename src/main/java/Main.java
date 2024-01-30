@@ -1,3 +1,14 @@
+import comparator.ComparatorStudent;
+import comparator.ComparatorUniversity;
+import enums.ValuesStudent;
+import enums.ValuesUniversity;
+import objects.Student;
+import objects.University;
+import reader.ReadingFile;
+import util.JsonUtil;
+import util.MapsComparators;
+import util.TypeComporator;
+
 import java.io.File;
 import java.util.List;
 import java.util.Map;
@@ -8,7 +19,7 @@ public class Main {
         ReadingFile classReadingFile = ReadingFile.getClassReadingFile();
         classReadingFile.readingFile(file);
         JsonUtil classJsonUtil = JsonUtil.getClassJsonUtil();
-    //код для Student
+    //код для object Student
         Map<ValuesStudent, ComparatorStudent> mapStudent = new MapsComparators().getMapComparatorsStudent();
         List<Student> objectsStudent = classReadingFile.readingSheetStudent().stream()
                 .sorted(TypeComporator.getComparatorStudent(mapStudent, ValuesStudent.FULL_NAME))
@@ -16,12 +27,11 @@ public class Main {
         String jsonListStudent = classJsonUtil.serializationListStudent(objectsStudent);
         System.out.println(jsonListStudent);
         List<Student> newObjectsStudent = classJsonUtil.deserializationListStudent(jsonListStudent);
-        newObjectsStudent.add(new Student().setFullName("gfxg").setUniversityId("55.").setCurrentCourseNumber(2).setAvgExamScore(1.2F));
         if(objectsStudent.size() == newObjectsStudent.size()){
             System.out.println("Размеры списков равны");
             streamStudent(objectsStudent,classJsonUtil);
         }
-    //код для University
+    //код для object University
         Map<ValuesUniversity, ComparatorUniversity> mapUniversity = new MapsComparators().getMapComparatorsUniversity();
         List<University> objectsUniversity = classReadingFile.readingSheetUniversity().stream()
                 .sorted(TypeComporator.getComparatorUniversity(mapUniversity, ValuesUniversity.PROFILE_NAME))
