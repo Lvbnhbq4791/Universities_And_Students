@@ -3,16 +3,16 @@ package util;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
-import objects.Student;
-import objects.University;
+import model.Student;
+import model.University;
 
 import java.lang.reflect.Type;
 import java.util.List;
 
 public class JsonUtil {
     private static JsonUtil classJsonUtil;
-    Gson serializer;
-    Gson deserializer;
+    private Gson serializer;
+    private Gson deserializer;
     private JsonUtil() {
         this.serializer = new GsonBuilder().setPrettyPrinting().create();
         this.deserializer = new GsonBuilder().create();

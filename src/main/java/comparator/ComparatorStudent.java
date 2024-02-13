@@ -1,6 +1,6 @@
 package comparator;
 
-import objects.Student;
+import model.Student;
 
 import java.util.Comparator;
 

@@ -1,8 +1,8 @@
-package reader;
+package reading;
 
 import enums.StudyProfile;
-import objects.Student;
-import objects.University;
+import model.Student;
+import model.University;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -35,8 +35,8 @@ public class ReadingFile {
     }
 
     public void readingFile(File file) {
-        try (FileInputStream fileInputStream = new FileInputStream(file)) {
-            BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+        try (FileInputStream fileInputStream = new FileInputStream(file);
+             BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream)) {
             XSSFWorkbook workbook = new XSSFWorkbook(bufferedInputStream);
             sheetStudents = workbook.getSheet("Студенты");
             sheetUniversities = workbook.getSheet("Университеты");

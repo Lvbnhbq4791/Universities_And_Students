@@ -1,6 +1,6 @@
 package comparator;
 
-import objects.University;
+import model.University;
 import org.apache.commons.lang3.StringUtils;
 
 public class ComporatorFullNameUniversity implements ComparatorUniversity{
